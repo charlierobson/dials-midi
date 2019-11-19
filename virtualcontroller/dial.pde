@@ -38,7 +38,7 @@ class dial
   }
 
   void mousePressed() {
-    _adjusting = dist(_x, _y, mouseX, mouseY) < 50;
+    _adjusting = dist(_x, _y, mouseX, mouseY) < _radius / 2;
     if (_adjusting) {
       _previousValue = _value;
     }
@@ -68,7 +68,7 @@ class dial
     stroke(0);
 
     textAlign(CENTER,CENTER);
-    text(_label + ": " + str(_value),0,_radius/2+10);
+    text(_label + "\n" + str(_value),0,_radius/2+10);
 
     noFill();
     strokeWeight(3);
