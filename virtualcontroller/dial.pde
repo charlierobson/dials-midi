@@ -1,18 +1,21 @@
-class dial
+class dial implements interactable, drawable
 {
   float _x, _y, _radius, _range, _value;
 
   String _label;
-  
+
   boolean _adjusting;
   float _previousValue;
 
-  dial(float x, float y, float radius, float range, String label) {
+  dial(float x, float y, float radius, String label, float range) {
     _x = x;
     _y = y;
     _radius = radius;
-    _range = range - 1;
+
     _label = label;
+
+    _range = range - 1;
+    _value = 0;
   }
 
   void setValue(float v) {

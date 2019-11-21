@@ -1,21 +1,20 @@
 class dial_cc extends dial
 {
-  int _channel;
-  int _ccnumber;
+  int _channel, _ccnumber;
 
-  dial_cc(float x, float y, float radius, int channel, String label, int ccnumber, float range) {
-    super(x, y, radius, range, label);
+  dial_cc(float x, float y, float radius, String label, float range,
+            int channel, int ccnumber) {
+    super(x, y, radius, label, range);
     _channel = channel;
     _ccnumber = ccnumber;
   }
 
   @Override
   void onValueChanging(float prev, float current) {
-    println(str(prev) + " -> " + str(current));
+    writeCC(_channel, _ccnumber, (int)current);
   }
 
   @Override
   void onValueChanged(float prev, float current) {
-    println(str(prev) + "..." + str(current));
   }
 }

@@ -1,32 +1,37 @@
-class toggle extends dial
+class toggle implements drawable, interactable
 {
-  float _width, _height;
-  boolean _state;
+  float _x, _y, _width, _height;
   String _label;
 
-  int _channel, _ccnumber;
+  boolean _state;
 
-  toggle(float x, float y, float w, float h, int channel, String label, int ccnumber) {
-    super(x, y, 0, 0, label);
+  toggle(float x, float y, float w, float h, String label) {
+    _x = x;
+    _y = y;
     _width = w;
     _height = h;
-    _state = false;
+
     _label = label;
-    _channel = channel;
-    _ccnumber = ccnumber;
+
+    _state = false;
   }
 
-  @Override
   void mousePressed() {
     float x = _x - (_width / 2);
     float y = _y - (_height / 2);
 
     if (mouseX >= x && mouseX < x + _width && mouseY >= y && mouseY < y + _height) {
       _state = !_state;
+      onStateChanged();
     }
   }
 
-  @Override
+  // override this in derived classes
+  void onStateChanged() { }
+
+  void mouseDragged() { }
+  void mouseReleased() { }
+
   void draw() {
     stroke(0);
     strokeWeight(3);
